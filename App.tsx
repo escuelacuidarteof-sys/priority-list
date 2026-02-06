@@ -35,7 +35,9 @@ const App: React.FC = () => {
   // Al cargar, verificar si viene con un ID para ver el Kit
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const uid = params.get('uid');
+    const uidFromUrl = params.get('uid');
+    const uidFromStorage = localStorage.getItem('cuidarte_uid');
+    const uid = uidFromUrl || uidFromStorage;
 
     if (uid) {
       verifyAccess(uid);
@@ -68,8 +70,10 @@ const App: React.FC = () => {
 
       if (data) {
         setSubmittedLeadId(data.id);
+        localStorage.setItem('cuidarte_uid', data.id);
         setStatus('gated_kit');
       } else {
+        localStorage.removeItem('cuidarte_uid');
         setStatus('idle');
         setErrorMessage('El enlace de acceso ha caducado o no es válido. Por favor, regístrate de nuevo.');
       }
@@ -141,7 +145,10 @@ const App: React.FC = () => {
 
       if (error) throw error;
 
-      if (data) setSubmittedLeadId(data.id);
+      if (data) {
+        setSubmittedLeadId(data.id);
+        localStorage.setItem('cuidarte_uid', data.id);
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((window as any).confetti) {
