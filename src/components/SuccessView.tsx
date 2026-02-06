@@ -50,14 +50,26 @@ const SuccessView: React.FC<SuccessViewProps> = ({ submittedLeadId, onOpenKit, i
                         Recurso Exclusivo Dra. Odile Fernández
                     </p>
 
-                    <button
-                        onClick={onOpenKit}
-                        disabled={isDownloading}
-                        className="w-full py-4 rounded-2xl bg-emerald-600 text-white font-bold text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-600/20 flex items-center justify-center gap-3 active:scale-95 disabled:opacity-75 disabled:cursor-not-allowed"
-                    >
-                        {isDownloading ? <i className="fa-solid fa-spinner animate-spin"></i> : <i className="fa-solid fa-eye"></i>}
-                        Ver Kit Ahora
-                    </button>
+                    <div className="space-y-3">
+                        <button
+                            onClick={onOpenKit}
+                            disabled={isDownloading}
+                            className="w-full py-4 rounded-2xl bg-emerald-600 text-white font-bold text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-600/20 flex items-center justify-center gap-3 active:scale-95 disabled:opacity-75 disabled:cursor-not-allowed"
+                        >
+                            {isDownloading ? <i className="fa-solid fa-spinner animate-spin"></i> : <i className="fa-solid fa-eye"></i>}
+                            Ver Kit Ahora
+                        </button>
+
+                        <a
+                            href="https://kitsupervivenvivneciacuid-arte.netlify.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-3 rounded-2xl bg-white border-2 border-emerald-100 text-emerald-600 font-bold text-sm hover:bg-emerald-50 transition-all flex items-center justify-center gap-3 active:scale-95"
+                        >
+                            <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                            Abrir en pestaña nueva
+                        </a>
+                    </div>
                 </motion.div>
 
                 <motion.div
